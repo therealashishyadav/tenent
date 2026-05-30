@@ -135,4 +135,6 @@ public class TenantController {
 	    tenantService.hardDeleteTenant(id);
 	    return ResponseEntity.noContent().build();
 	}
+	
+	
 }
