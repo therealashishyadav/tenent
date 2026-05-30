@@ -18,4 +18,7 @@ public interface RentRecordRepository extends JpaRepository<RentRecord, Long> {
 
 	@Query("SELECT DISTINCT r.year, r.month FROM RentRecord r WHERE r.tenant.ownerId = :ownerId ORDER BY r.year DESC, r.month DESC")
 	List<Object[]> findDistinctMonthsByOwnerId(Long ownerId);
+
+	void deleteByTenantId(Long tenantId);
+
 }

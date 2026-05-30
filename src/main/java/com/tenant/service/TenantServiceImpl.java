@@ -103,7 +103,9 @@ public class TenantServiceImpl implements TenantService {
 	}
 
 	@Override
+	@Transactional
 	public void hardDeleteTenant(Long id) {
-		tenantRepository.deleteById(id);
+	    rentRecordRepository.deleteByTenantId(id);
+	    tenantRepository.deleteById(id);
 	}
 }
