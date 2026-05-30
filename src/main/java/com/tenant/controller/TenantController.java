@@ -124,4 +124,15 @@ public class TenantController {
 		Long ownerId = getOwnerIdFromToken(request);
 		return ResponseEntity.ok(tenantService.getTenantHistory(tenantId, ownerId));
 	}
+	@DeleteMapping("/{id}/permanent")
+	public ResponseEntity<Void> hardDeleteTenant(@PathVariable Long id, HttpServletRequest request) {
+	    Long ownerId = getOwnerIdFromToken(request);
+	    Tenant tenant = tenantService.getTenantById(id)
+	        .orElseThrow(() -> new RuntimeException("Tenant not found"));
+	    if (!tenant.getOwnerId().equals(ownerId)) {
+	        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+	    }
+	    tenantService.hardDeleteTenant(id);
+	    return ResponseEntity.noContent().build();
+	}
 }
