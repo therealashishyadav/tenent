@@ -12,4 +12,6 @@ public interface TenantRepository extends JpaRepository<Tenant, Long> {
 	List<Tenant> findByOwnerIdAndActiveTrue(Long ownerId);
 
 	List<Tenant> findByPgIdAndActiveTrue(Long pgId);
+	
+	List<Tenant> findByOwnerIdAndPgIdAndActiveTrue(Long ownerId, Long pgId);
 }

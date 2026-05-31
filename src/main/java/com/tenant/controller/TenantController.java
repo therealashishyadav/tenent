@@ -136,5 +136,13 @@ public class TenantController {
 	    return ResponseEntity.noContent().build();
 	}
 	
+	@GetMapping("/by-pg/{pgId}")
+	public ResponseEntity<List<Tenant>> getTenantsByPg(
+	        @PathVariable Long pgId,
+	        HttpServletRequest request) {
+	    Long ownerId = getOwnerIdFromToken(request);
+	    List<Tenant> tenants = tenantService.getTenantsByPg(ownerId, pgId);
+	    return ResponseEntity.ok(tenants);
+	}
 	
 }

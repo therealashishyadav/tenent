@@ -25,4 +25,8 @@ public interface TenantService {
 	List<RentRecord> getTenantHistory(Long tenantId, Long ownerId);
 
 	void hardDeleteTenant(Long id);
+
+	List<Tenant> getTenantsByPg(Long ownerId, Long pgId);
+	
+	
 }

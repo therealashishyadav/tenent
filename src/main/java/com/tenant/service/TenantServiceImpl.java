@@ -108,4 +108,9 @@ public class TenantServiceImpl implements TenantService {
 	    rentRecordRepository.deleteByTenantId(id);
 	    tenantRepository.deleteById(id);
 	}
+	
+	public List<Tenant> getTenantsByPg(Long ownerId, Long pgId) {
+	    return tenantRepository.findByOwnerIdAndPgIdAndActiveTrue(ownerId, pgId);
+	}
+	
 }
